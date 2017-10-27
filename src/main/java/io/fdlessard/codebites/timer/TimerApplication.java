@@ -27,7 +27,7 @@ public class TimerApplication {
 
 
     @Pointcut(
-            "execution(public * io.fdlessard.codebites.timer.services.CacheableCustomerServiceImpl.*(..))"
+            "execution(public io.fdlessard.codebites.timer.domain.Customer io.fdlessard.codebites.timer.services.CacheableCustomerServiceImpl.getCustomerById(..))"
     )
     public void monitor() {
     }
