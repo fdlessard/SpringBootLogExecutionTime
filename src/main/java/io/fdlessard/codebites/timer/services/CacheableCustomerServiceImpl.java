@@ -1,6 +1,7 @@
 package io.fdlessard.codebites.timer.services;
 
 import io.fdlessard.codebites.timer.CustomerKeyGenerator;
+import io.fdlessard.codebites.timer.LogExecutionTime;
 import io.fdlessard.codebites.timer.domain.Customer;
 import io.fdlessard.codebites.timer.repositories.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -33,10 +34,12 @@ public class CacheableCustomerServiceImpl extends CustomerServiceImpl {
     @Override
     @Cacheable(value = "Customer", keyGenerator = "customerKeyGenerator")
     public Customer getCustomerById(long id) {
-        LOGGER.info("CacheableCustomerServiceImpl.getById({})", id);
+        LOGGER.info("CacheableCustomerServiceImpl.getCustomerById({})", id);
         return super.getCustomerById(id);
     }
 
+
+ //   @LogExecutionTime
     @Override
     public List<Customer> getCustomers(List<Long> ids) {
 

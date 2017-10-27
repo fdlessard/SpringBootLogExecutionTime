@@ -3,7 +3,6 @@ package io.fdlessard.codebites.timer.services;
 import io.fdlessard.codebites.timer.domain.Customer;
 import io.fdlessard.codebites.timer.repositories.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getCustomerById(long id) {
 
-        LOGGER.info("CustomerServiceImpl.getById({})", id);
+        LOGGER.info("CustomerServiceImpl.getCustomerById({})", id);
         pause();
         return customerRepository.findOne(id);
     }
@@ -37,7 +36,6 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.findAll().forEach(customers::add);
         return customers;
     }
-
 
     @Override
     public List<Customer> getCustomers(List<Long> ids) {

@@ -17,12 +17,11 @@ public class CustomerKeyGenerator implements KeyGenerator {
         StringBuilder sb = new StringBuilder();
         sb.append("Prefix-");
 
-
         for (Object param : params) {
             sb.append(param.toString());
         }
 
-        LOGGER.info("CustomerKeyGenerator.generate() - {}", sb.toString());
+        LOGGER.info("CustomerKeyGenerator.generate() - {}", sb.toString() + "-----");
 
         return sb.toString();
     }
