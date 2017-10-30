@@ -36,9 +36,7 @@ public class TimerApplication {
     public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
 
         PerformanceMonitorInterceptor performanceMonitorInterceptor = new PerformanceMonitorInterceptor();
-
         performanceMonitorInterceptor.setLoggerName("PerformanceMonitorInterceptor");
-
         return performanceMonitorInterceptor;
     }
 

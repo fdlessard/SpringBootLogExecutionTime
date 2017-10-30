@@ -34,23 +34,16 @@
         </encoder>
     </appender>
 
-    <root level="trace">
+    <root level="info">
         <appender-ref ref="STDOUT"/>
     </root>
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
 
-    <logger name="org.springframework.aop.interceptor.PerformanceMonitorInterceptor" additivity="false">
-        <level value="TRACE"/>
+    <logger name="PerformanceMonitorInterceptor" additivity="false">
+        <level value="INFO"/>
         <appender-ref ref="STDOUT"/>
     </logger>
-
-<!--    <logger name="org.springframework.web" additivity="false">
-        <level value="TRACE"/>
-        <appender-ref ref="STDOUT"/>
-    </logger>-->
-
-
 
 </configuration>
