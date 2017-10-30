@@ -24,9 +24,9 @@ spring:
 
 logging.level:
 #  root: trace
-  org.springframework.web: trace   # this is working
-  org.springframework.aop.interceptor.PerformanceMonitorInterceptor: trace   # THIS is NOT Working
-
+#  org.springframework.web: trace   # this is working
+#  org.springframework.aop.interceptor.PerformanceMonitorInterceptor: trace   # THIS is NOT Working
+  PerformanceMonitorInterceptor: trace
 
 
 

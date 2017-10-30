@@ -34,7 +34,12 @@ public class TimerApplication {
 
     @Bean
     public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
-        return new PerformanceMonitorInterceptor(true);
+
+        PerformanceMonitorInterceptor performanceMonitorInterceptor = new PerformanceMonitorInterceptor();
+
+        performanceMonitorInterceptor.setLoggerName("PerformanceMonitorInterceptor");
+
+        return performanceMonitorInterceptor;
     }
 
     @Bean
