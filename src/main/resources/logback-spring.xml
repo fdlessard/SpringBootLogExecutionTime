@@ -9,6 +9,12 @@
         </encoder>
     </appender>-->
 
+<!--    <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+        <Marker>none</Marker>
+        <OnMatch>ACCEPT</OnMatch>
+    </turboFilter>-->
+
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
@@ -17,18 +23,34 @@
         </encoder>
     </appender>
 
-    <root level="info">
+    <appender name="STDOUT2" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{dd-MM-yyyy HH:mm:ss.SSS} %yellow([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="trace">
         <appender-ref ref="STDOUT"/>
     </root>
 
-
-<!--
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
--->
 
 
+    <logger name="org.springframework.aop.interceptor.PerformanceMonitorInterceptor" additivity="false">
+        <level value="TRACE"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
 
-    <logger name="org.springframework.aop.interceptor.PerformanceMonitorInterceptor" level="TRACE" />
+<!--    <logger name="org.springframework.web" additivity="false">
+        <level value="TRACE"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>-->
+
 
 
 </configuration>

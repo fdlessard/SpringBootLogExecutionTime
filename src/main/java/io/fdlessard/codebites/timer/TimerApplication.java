@@ -34,13 +34,11 @@ public class TimerApplication {
 
     @Bean
     public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
-    //    LOGGER.trace("performanceMonitorInterceptor()");
         return new PerformanceMonitorInterceptor(true);
     }
 
     @Bean
     public Advisor performanceMonitorAdvisor() {
-  //      LOGGER.trace("performanceMonitorAdvisor()");
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression("io.fdlessard.codebites.timer.TimerApplication.monitor()");
         return new DefaultPointcutAdvisor(pointcut, performanceMonitorInterceptor());

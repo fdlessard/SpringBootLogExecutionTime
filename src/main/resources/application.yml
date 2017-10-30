@@ -8,15 +8,29 @@ spring:
       provider: org.ehcache.jsr107.EhcacheCachingProvider
       config: classpath:ehcache.xml
 
-#org.slf4j.simpleLogger.defaultLogLevel: trace
+
 #    cache-names=customers
 #    type=none
 #redis:
 #   host: localhost
 #   port: 6379
 
+
+######### Logging settings ... see also logback-spring.xml
+
+#trace: true
+#org.slf4j.simpleLogger.defaultLogLevel: trace
+#log4j.logger.org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
+
 logging.level:
-  org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
+#  root: trace
+  org.springframework.web: trace   # this is working
+  org.springframework.aop.interceptor.PerformanceMonitorInterceptor: trace   # THIS is NOT Working
+
+
+
+
+
 
 
 
