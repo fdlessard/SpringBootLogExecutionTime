@@ -4,12 +4,15 @@ package io.fdlessard.codebites.timer.controllers;
 import io.fdlessard.codebites.timer.domain.Customer;
 import io.fdlessard.codebites.timer.services.CustomerService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -53,6 +56,26 @@ public class CustomerController {
     public List<Customer> getCustomers(@PathVariable List<Long> ids) {
         LOGGER.info("CustomerController.getCustomers()");
         return customerService.getCustomers(ids);
+    }
+
+    @GetMapping(value = "/batchIds/{ids}", produces = "application/json")
+    public ResponseEntity<List<ResponseEntity<Customer>>> getCustomersBatch(@PathVariable List<Long> ids) {
+
+        LOGGER.info("CustomerController.getCustomersBatch()");
+
+        List<Customer> customers = customerService.getCustomers(ids);
+
+        List<ResponseEntity<Customer>> customersResponseEntity = new ArrayList<>();
+
+        for(Customer customer: customers) {
+            customersResponseEntity.add(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON_UTF8).body(customer));
+
+        }
+
+        customersResponseEntity.add(ResponseEntity.badRequest().build());
+
+
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON_UTF8).body(customersResponseEntity);
     }
 
     @PostMapping(value = "/", produces = "application/json")

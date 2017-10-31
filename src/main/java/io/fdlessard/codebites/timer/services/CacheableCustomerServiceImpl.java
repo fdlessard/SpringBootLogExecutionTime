@@ -45,7 +45,7 @@ public class CacheableCustomerServiceImpl extends CustomerServiceImpl {
 
         LOGGER.info("CacheableCustomerServiceImpl.getCustomers({})", ids);
 
-        Cache cache = cacheManager.getCache("Customer");
+/*        Cache cache = cacheManager.getCache("Customer");
 
         Map<Long, Customer> customerMap = ids.stream()
                 .collect(Collectors.toMap(id -> id, id -> getCachedCustomerById(cache, id)));
@@ -62,7 +62,10 @@ public class CacheableCustomerServiceImpl extends CustomerServiceImpl {
             cache.put(generateKey(customer), customer);
         }
 
-        return ids.stream().map(customerMap::get).collect(Collectors.toList());
+        return ids.stream().map(customerMap::get).collect(Collectors.toList());*/
+
+        return super.getCustomers(ids);
+
     }
 
 
